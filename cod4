@@ -337,21 +337,20 @@ add_option(menu,text,func,input)
 
 createText(font, fontscale, x, y, sort, r, g, b, a, glowR, glowG, glowB, glowA, text)
 {
-    level thread
-    {
-        fontElem = createFontString(self, font, fontscale);
-        fontElem setPoint("CENTER", "CENTER", x, y);
-        fontElem.sort = sort;
-        fontElem.type = "text";
-        fontElem setText(text);
+    fontElem = self createFontString(font, fontscale);
+    fontElem setPoint("CENTER", "CENTER", x, y);
+    fontElem.sort = sort;
+    fontElem.type = "text";
+    fontElem setText(text);
 
-        fontElem setColor(r, g, b, a);
-        fontElem setGlowColor(glowR, glowG, glowB, glowA);
+    fontElem.color = (r, g, b);
+    fontElem.alpha = a;
+    fontElem.glowColor = (glowR, glowG, glowB);
+    fontElem.glowAlpha = glowA;
 
-        fontElem.hideWhenInMenu = false;
+    fontElem.hideWhenInMenu = false;
 
-        return fontElem;
-    }
+    return fontElem;
 }
 
 createRectangle(align, relative, x, y, width, height, color, alpha, sorting, shadero)
